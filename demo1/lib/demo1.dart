@@ -11,7 +11,6 @@ class HelloWorldApp extends StatelessWidget{
       theme: ThemeData(
         primaryColor: Colors.red,
         accentColor:  Colors.green,
-        primaryColorBrightness: Brightness.light,
       ),
       home: Scaffold(
         appBar: AppBar(
@@ -20,12 +19,25 @@ class HelloWorldApp extends StatelessWidget{
         body: Center(
           child: Text("flutter hello world"),
         ),
+
+
         floatingActionButton: FloatingActionButton(
-          onPressed: (){
-           Toast.show("Toast plugin app",context ,duration:Toast.LENGTH_LONG , gravity:  Toast.BOTTOM);
+          onPressed: () {
+            Scaffold.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Have a snack!'),
+              ),
+            );
           },
+          tooltip: 'Increment',
           child: Icon(Icons.add)),
       ),
     );
+  }
+  void _showToast(BuildContext context) {
+   SnackBar(
+     content: const Text("dadad"),
+     action: SnackBarAction(label: "DADDA", onPressed: (){}),
+   );
   }
 }
