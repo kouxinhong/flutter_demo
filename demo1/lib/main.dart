@@ -1,122 +1,93 @@
 import 'package:flutter/material.dart';
-
+// import 'bar/AppBar.dart';
 void main() {
-  runApp(new SampleApp());
+  runApp(HomeAppBar());
 }
 
-class SampleApp extends StatelessWidget {
+class HomeAppBar extends StatefulWidget {
+  @override
+  _HomeAppBarState createState() => _HomeAppBarState();
+}
+
+class _HomeAppBarState extends State<HomeAppBar> {
+  Choice _selectedChoice = choices[0];
+
+  void _select(Choice choice) {
+    setState(() {
+      // Causes the app to rebuild with the new _selectedChoice.
+      _selectedChoice = choice;
+    });
+  }
+
+  List<Widget> _actions;
+
+  List<Widget> _getAction() {
+    if (null != _actions) {
+      return _actions;
+    }
+    _actions = List<Widget>();
+    for (int i = 0; i < 2; i++) {
+      IconButton iconButton = IconButton(
+        icon: choices[i].icon,
+        onPressed: () {
+          _select(choices[i]);
+        },
+      );
+      _actions.add(iconButton);
+    }
+    PopupMenuButton popupMenuButton = PopupMenuButton<Choice>(
+        icon: choices[2].icon,
+        onSelected: _select,
+        itemBuilder: (BuildContext context) {
+          return choices.skip(3).map<PopupMenuItem<Choice>>((Choice choice) {
+            return PopupMenuItem(
+                value: choice,
+                child: ListTile(
+                  leading: choice.icon,
+                  title: Text(choice.title, style: TextStyle(color: Colors.white)),
+                ));
+          }).toList();
+        });
+    _actions.add(popupMenuButton);
+    return _actions;
+  }
+
+  // List _appBarIcon = [
+  //   MyIconButton(0),
+  //   MyIconButton(1),
+  //   MyPopuMenu(),
+  // ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'toast demo',
-      // home: MyShowSnackBarError(),
-      // home: MynackBar(),
-      home: NormalSnackBar(),
-    );
-  }
-}
-
-
-//错误的写法
-// class MyShowSnackBarError extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("toast"),
-//       ),
-//       body: Center(
-//         child: RaisedButton( //取不到context
-//           onPressed:() => Scaffold.of(context).showSnackBar(SnackBar(content: Text('hello toast'))),
-//           child: Text('点我弹出吐司'),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-//方法1 不推荐
-class MynackBar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("toast"),
-      ),
-      body: Builder(
-        builder: (context)=>
-          Center(
-            child: RaisedButton(
-              onPressed: () => Scaffold.of(context).showSnackBar(SnackBar(content: Text('hello toast'))),
-              child: Text('点我弹出吐司'),
-              ),
-            )
+      title: 'APKPure',
+      theme: ThemeData(primarySwatch: Colors.lightBlue, cardColor: Colors.black),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Home APKPure'),
+          actions: _getAction(),
         ),
-    );
-  }
-}
-
-
-//方法2 一般使用这种
-
-class NormalSnackBar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("toast"),
-      ),
-      body: Center(
-        child: MyButton()
+        body: ListTile(
+          leading: _selectedChoice.icon,
+          title: Text(_selectedChoice.title),
+        ),
       ),
     );
   }
 }
-class MyButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return RaisedButton(
-      onPressed: () {
-        _navigateToXiaoJieJie(context);
-      },
-      child: Text("点我弹出吐司"),
-    );
-  }
 
-  _navigateToXiaoJieJie(BuildContext context) async {
-    //async是启用异步方法
-
-    final result = await Navigator.push(
-        //等待
-        context,
-        MaterialPageRoute(builder: (context) => XiaoJieJie()));
-
-    Scaffold.of(context).showSnackBar(SnackBar(content: Text('$result')));
-  }
+class Choice {
+  Choice({this.icon, this.title});
+  final Icon icon;
+  final String title;
 }
 
-class XiaoJieJie extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('我是小姐姐')),
-      body: Center(
-          child: Column(
-        children: <Widget>[
-          RaisedButton(
-            child: Text('大长腿小姐姐'),
-            onPressed: () {
-              Navigator.pop(context, '大长腿:1511008888');
-            },
-          ),
-          RaisedButton(
-            child: Text('小蛮腰小姐姐'),
-            onPressed: () {
-              Navigator.pop(context, '大长腿:1511009999');
-            },
-          ),
-        ],
-      )),
-    );
-  }
-}
+List<Choice> choices = <Choice>[
+  Choice(title: 'Search', icon: Icon(Icons.search, color: Colors.white)),
+  Choice(title: 'box', icon: Icon(Icons.add_box, color: Colors.white)),
+  Choice(title: 'setting', icon: Icon(Icons.settings, color: Colors.white)),
+  Choice(title: 'setting', icon: Icon(Icons.settings, color: Colors.white)),
+  Choice(title: 'feedback', icon: Icon(Icons.feedback, color: Colors.white)),
+  Choice(title: 'report', icon: Icon(Icons.report, color: Colors.white)),
+];
