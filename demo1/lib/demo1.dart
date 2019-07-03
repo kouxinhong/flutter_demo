@@ -17,27 +17,22 @@ class HelloWorldApp extends StatelessWidget{
             title: Text('demo1'),
         ),
         body: Center(
-          child: Text("flutter hello world"),
+          child: MyButtom(),
         ),
-
-
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Scaffold.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Have a snack!'),
-              ),
-            );
-          },
-          tooltip: 'Increment',
-          child: Icon(Icons.add)),
       ),
     );
   }
+
+}
+
+class MyButtom extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return RaisedButton.icon(onPressed: (){_showToast(context);}, icon: Icon(Icons.ac_unit), label: Icon(Icons.ac_unit));
+  }
   void _showToast(BuildContext context) {
-   SnackBar(
-     content: const Text("dadad"),
-     action: SnackBarAction(label: "DADDA", onPressed: (){}),
-   );
+    var fullName;
+    assert(fullName.isEmpty);
+    print('JS prints this line.');
   }
 }
