@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'bar/AppBar.dart';
+import './home/bar/AppBar.dart';
+
 void main() {
   runApp(HomeAppBar());
 }
@@ -44,7 +45,8 @@ class _HomeAppBarState extends State<HomeAppBar> {
                 value: choice,
                 child: ListTile(
                   leading: choice.icon,
-                  title: Text(choice.title, style: TextStyle(color: Colors.white)),
+                  title:
+                      Text(choice.title, style: TextStyle(color: Colors.white)),
                 ));
           }).toList();
         });
@@ -52,28 +54,106 @@ class _HomeAppBarState extends State<HomeAppBar> {
     return _actions;
   }
 
-  // List _appBarIcon = [
-  //   MyIconButton(0),
-  //   MyIconButton(1),
-  //   MyPopuMenu(),
-  // ];
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'APKPure',
-      theme: ThemeData(primarySwatch: Colors.lightBlue, cardColor: Colors.black),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Home APKPure'),
-          actions: _getAction(),
-        ),
-        body: ListTile(
-          leading: _selectedChoice.icon,
-          title: Text(_selectedChoice.title),
-        ),
-      ),
-    );
+        title: 'APKPure',
+        theme:
+            ThemeData(primarySwatch: Colors.lightBlue, cardColor: Colors.black),
+        home: Scaffold(
+            appBar: AppBar(
+              title: const Text('Home APKPure'),
+              actions: _getAction(),
+            ),
+            body: ListView(
+              children: <Widget>[
+                Card(
+                  margin: EdgeInsets.all(16),
+                  color: Colors.white,
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(8))),
+                  child: Column(
+                    children: <Widget>[
+                      Image.network('https://upload.jianshu.io/admin_banners/web_images/4675/569882aa7e239c755c754c4d170a859eca26f752.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540'),
+                      Text('大望路女司机',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.black, fontSize: 18.0),
+                      ),
+                    ],
+                  ),
+                ),
+                Card(
+                  margin: EdgeInsets.all(16),
+                  color: Colors.white,
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(8))),
+                  child: Column(
+                    children: <Widget>[
+                      Image.network('https://upload.jianshu.io/admin_banners/web_images/4675/569882aa7e239c755c754c4d170a859eca26f752.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540'),
+                      Text('大望路女司机',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.black, fontSize: 18.0),
+                      ),
+                    ],
+                  ),
+                ),
+                Card(
+                  margin: EdgeInsets.all(16),
+                  color: Colors.white,
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(8))),
+                  child: Column(
+                    children: <Widget>[
+                      Image.network('https://upload.jianshu.io/admin_banners/web_images/4675/569882aa7e239c755c754c4d170a859eca26f752.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540'),
+                      Text('大望路女司机',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.black, fontSize: 18.0),
+                      ),
+                    ],
+                  ),
+                ),
+                Card(
+                  margin: EdgeInsets.all(16),
+                  color: Colors.white,
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(8))),
+                  child: Column(
+                    children: <Widget>[
+                      Image.network('https://upload.jianshu.io/admin_banners/web_images/4675/569882aa7e239c755c754c4d170a859eca26f752.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540'),
+                      Text('大望路女司机',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.black, fontSize: 18.0),
+                      ),
+                    ],
+                  ),
+                ),
+                Card(
+                  margin: EdgeInsets.all(16),
+                  color: Colors.white,
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(8))),
+                  child: Column(
+                    children: <Widget>[
+                      Image.network('https://upload.jianshu.io/admin_banners/web_images/4675/569882aa7e239c755c754c4d170a859eca26f752.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540'),
+                      Text('大望路女司机',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.black, fontSize: 18.0),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            )));
   }
 }
 
