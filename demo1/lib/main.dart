@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import './home/bar/AppBar.dart';
-<<<<<<< HEAD
-=======
-
->>>>>>> 083a49b0600cdb1ce8f9c3734c6561daa005cad0
 void main() {
   runApp(HomeAppBar());
 }
@@ -57,30 +53,6 @@ class _HomeAppBarState extends State<HomeAppBar> {
     return _actions;
   }
 
-<<<<<<< HEAD
-  List<Widget> _appBarIcon = <Widget>[
-    MyIconButton1(),
-    MyIconButton2(),
-    MyPopuMenu(),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'APKPure',
-      theme: ThemeData(primarySwatch: Colors.lightBlue, cardColor: Colors.black),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Home APKPure'),
-          actions:_appBarIcon,
-        ),
-        body: ListTile(
-          leading:  _appBarIcon[0] ,
-          title: Text(_selectedChoice.title),
-        ),
-      ),
-    );
-=======
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -181,7 +153,6 @@ class _HomeAppBarState extends State<HomeAppBar> {
                 )
               ],
             )));
->>>>>>> 083a49b0600cdb1ce8f9c3734c6561daa005cad0
   }
 }
 
