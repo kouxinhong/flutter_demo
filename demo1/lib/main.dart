@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'bar/AppBar.dart';
+import './home/bar/AppBar.dart';
 void main() {
   runApp(HomeAppBar());
 }
@@ -52,11 +52,11 @@ class _HomeAppBarState extends State<HomeAppBar> {
     return _actions;
   }
 
-  // List _appBarIcon = [
-  //   MyIconButton(0),
-  //   MyIconButton(1),
-  //   MyPopuMenu(),
-  // ];
+  List<Widget> _appBarIcon = <Widget>[
+    MyIconButton1(),
+    MyIconButton2(),
+    MyPopuMenu(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -66,10 +66,10 @@ class _HomeAppBarState extends State<HomeAppBar> {
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Home APKPure'),
-          actions: _getAction(),
+          actions:_appBarIcon,
         ),
         body: ListTile(
-          leading: _selectedChoice.icon,
+          leading:  _appBarIcon[0] ,
           title: Text(_selectedChoice.title),
         ),
       ),
