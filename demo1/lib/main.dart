@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './home/bar/AppBar.dart';
+
 void main() {
   runApp(HomeAppBar());
 }
@@ -56,108 +57,58 @@ class _HomeAppBarState extends State<HomeAppBar> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'APKPure',
+        title: 'flutter',
         theme:
             ThemeData(primarySwatch: Colors.lightBlue, cardColor: Colors.black),
         home: Scaffold(
             appBar: AppBar(
-              title: const Text('Home APKPure'),
+              title: const Text('Flutter'),
               actions: _getAction(),
             ),
-            body: ListView(
-              children: <Widget>[
-                Card(
-                  margin: EdgeInsets.all(16),
+            body: HomeListView()));
+  }
+}
+
+class HomeListView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        color: Colors.grey,
+        child: ListView.builder(
+            scrollDirection: Axis.vertical,
+//            padding: EdgeInsets.all(10.0),
+            shrinkWrap: true,
+            itemCount: 10,
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
                   color: Colors.white,
-                  elevation: 4,
-                  shape: RoundedRectangleBorder(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(8))),
+                  elevation: 10,
+                  margin: EdgeInsets.fromLTRB(16, 8, 16, 8),
                   child: Column(
                     children: <Widget>[
-                      Image.network('https://upload.jianshu.io/admin_banners/web_images/4675/569882aa7e239c755c754c4d170a859eca26f752.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540'),
-                      Text('大望路女司机',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.black, fontSize: 18.0),
+                      ClipRRect(
+//                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(15)),
+                        child: Image.network('https://www.wanandroid.com/blogimgs/50c115c2-cf6c-4802-aa7b-a4334de444cd.png'),
                       ),
-                    ],
-                  ),
-                ),
-                Card(
-                  margin: EdgeInsets.all(16),
-                  color: Colors.white,
-                  elevation: 4,
-                  shape: RoundedRectangleBorder(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(8))),
-                  child: Column(
-                    children: <Widget>[
-                      Image.network('https://upload.jianshu.io/admin_banners/web_images/4675/569882aa7e239c755c754c4d170a859eca26f752.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540'),
-                      Text('大望路女司机',
+                      Divider(height: 1, color: Colors.brown),
+                      Text(
+                        'hello flutter Listview',
+                        style: TextStyle(height: 1, fontSize: 33),
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.black, fontSize: 18.0),
-                      ),
+                      )
                     ],
-                  ),
-                ),
-                Card(
-                  margin: EdgeInsets.all(16),
-                  color: Colors.white,
-                  elevation: 4,
-                  shape: RoundedRectangleBorder(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(8))),
-                  child: Column(
-                    children: <Widget>[
-                      Image.network('https://upload.jianshu.io/admin_banners/web_images/4675/569882aa7e239c755c754c4d170a859eca26f752.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540'),
-                      Text('大望路女司机',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.black, fontSize: 18.0),
-                      ),
-                    ],
-                  ),
-                ),
-                Card(
-                  margin: EdgeInsets.all(16),
-                  color: Colors.white,
-                  elevation: 4,
-                  shape: RoundedRectangleBorder(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(8))),
-                  child: Column(
-                    children: <Widget>[
-                      Image.network('https://upload.jianshu.io/admin_banners/web_images/4675/569882aa7e239c755c754c4d170a859eca26f752.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540'),
-                      Text('大望路女司机',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.black, fontSize: 18.0),
-                      ),
-                    ],
-                  ),
-                ),
-                Card(
-                  margin: EdgeInsets.all(16),
-                  color: Colors.white,
-                  elevation: 4,
-                  shape: RoundedRectangleBorder(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(8))),
-                  child: Column(
-                    children: <Widget>[
-                      Image.network('https://upload.jianshu.io/admin_banners/web_images/4675/569882aa7e239c755c754c4d170a859eca26f752.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540'),
-                      Text('大望路女司机',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.black, fontSize: 18.0),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            )));
+                  ));
+            }));
   }
 }
 
 class Choice {
   Choice({this.icon, this.title});
+
   final Icon icon;
   final String title;
 }
