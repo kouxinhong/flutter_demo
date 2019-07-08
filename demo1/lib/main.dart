@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import './home/bar/AppBar.dart';
+import './bar/AppBar.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
+import './service/BannerSevice.dart' as BannerSevice ;
+import './model/HomeBannerModel.dart';
+import './model/HomeBannerItemModel.dart';
 
 void main() {
   runApp(HomeAppBar());
@@ -11,14 +16,6 @@ class HomeAppBar extends StatefulWidget {
 }
 
 class _HomeAppBarState extends State<HomeAppBar> {
-  Choice _selectedChoice = choices[0];
-
-  void _select(Choice choice) {
-    setState(() {
-      // Causes the app to rebuild with the new _selectedChoice.
-      _selectedChoice = choice;
-    });
-  }
 
   List<Widget> _actions;
 
@@ -54,12 +51,22 @@ class _HomeAppBarState extends State<HomeAppBar> {
     return _actions;
   }
 
+  Choice _selectedChoice = choices[0];
+  void _select(Choice choice) {
+    setState(() {
+      // Causes the app to rebuild with the new _selectedChoice.
+      _selectedChoice = choice;
+
+    });
+  }
+ 
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'flutter',
-        theme:
-            ThemeData(primarySwatch: Colors.lightBlue, cardColor: Colors.black),
+        theme: ThemeData(primarySwatch: Colors.lightBlue, cardColor: Colors.black),
         home: Scaffold(
             appBar: AppBar(
               title: const Text('Flutter'),
@@ -70,6 +77,10 @@ class _HomeAppBarState extends State<HomeAppBar> {
 }
 
 class HomeListView extends StatelessWidget {
+
+    _home(){
+       Future<List<HomeBannerItemModel>> ls = BannerSevice.decodeBanner();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -78,7 +89,7 @@ class HomeListView extends StatelessWidget {
             scrollDirection: Axis.vertical,
 //            padding: EdgeInsets.all(10.0),
             shrinkWrap: true,
-            itemCount: 10,
+            itemCount: ,
             itemBuilder: (BuildContext context, int index) {
               return Card(
                   shape: const RoundedRectangleBorder(
@@ -105,6 +116,7 @@ class HomeListView extends StatelessWidget {
             }));
   }
 }
+
 
 class Choice {
   Choice({this.icon, this.title});
