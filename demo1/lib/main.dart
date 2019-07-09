@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './bar/my_app_bar.dart' as MyAppBar;
+import './bar/bottom_bar.dart' as bottomBar;
 import './service/BannerSevice.dart' as BannerSevice;
 import './model/HomeBannerItemModel.dart';
 
@@ -34,6 +35,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
               title: const Text('Flutter'),
               actions: _actions,
             ),
+            bottomNavigationBar: bottomBar.MyBottomNavigationBar(),
             body: HomeListView()));
   }
 }
