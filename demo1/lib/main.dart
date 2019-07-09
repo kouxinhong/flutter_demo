@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import './bar/AppBar.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import './service/BannerSevice.dart' as BannerSevice ;
+import './service/BannerSevice.dart' as BannerSevice;
 import './model/HomeBannerModel.dart';
 import './model/HomeBannerItemModel.dart';
 
@@ -16,7 +16,6 @@ class HomeAppBar extends StatefulWidget {
 }
 
 class _HomeAppBarState extends State<HomeAppBar> {
-
   List<Widget> _actions;
 
   List<Widget> _getAction() {
@@ -56,17 +55,15 @@ class _HomeAppBarState extends State<HomeAppBar> {
     setState(() {
       // Causes the app to rebuild with the new _selectedChoice.
       _selectedChoice = choice;
-
     });
   }
- 
-
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'flutter',
-        theme: ThemeData(primarySwatch: Colors.lightBlue, cardColor: Colors.black),
+        theme:
+            ThemeData(primarySwatch: Colors.lightBlue, cardColor: Colors.black),
         home: Scaffold(
             appBar: AppBar(
               title: const Text('Flutter'),
@@ -76,11 +73,19 @@ class _HomeAppBarState extends State<HomeAppBar> {
   }
 }
 
-class HomeListView extends StatelessWidget {
+class HomeListView extends StatefulWidget {
+  @override
+  _HomeListViewState createState() => _HomeListViewState();
+}
 
-    _home(){
-       Future<List<HomeBannerItemModel>> ls = BannerSevice.decodeBanner();
+class _HomeListViewState extends State<HomeListView> {
+  List<HomeBannerItemModel> _lists;
+  @override
+  void setState(fn) async {
+    super.setState(fn);
+    _lists = await BannerSevice.decodeBanner();
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -89,7 +94,7 @@ class HomeListView extends StatelessWidget {
             scrollDirection: Axis.vertical,
 //            padding: EdgeInsets.all(10.0),
             shrinkWrap: true,
-            itemCount: ,
+            itemCount: _lists.length,
             itemBuilder: (BuildContext context, int index) {
               return Card(
                   shape: const RoundedRectangleBorder(
@@ -103,11 +108,11 @@ class HomeListView extends StatelessWidget {
 //                        borderRadius: BorderRadius.all(Radius.circular(15)),
                         borderRadius:
                             BorderRadius.vertical(top: Radius.circular(15)),
-                        child: Image.network('https://www.wanandroid.com/blogimgs/50c115c2-cf6c-4802-aa7b-a4334de444cd.png'),
+                        child: Image.network(_lists[index].imagePath),
                       ),
                       Divider(height: 1, color: Colors.brown),
                       Text(
-                        'hello flutter Listview',
+                        _lists[index].title,
                         style: TextStyle(height: 1, fontSize: 33),
                         textAlign: TextAlign.center,
                       )
@@ -116,7 +121,43 @@ class HomeListView extends StatelessWidget {
             }));
   }
 }
+// class HomeListView extends StatelessWidget {
 
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//         color: Colors.grey,
+//         child: ListView.builder(
+//             scrollDirection: Axis.vertical,
+// //            padding: EdgeInsets.all(10.0),
+//             shrinkWrap: true,
+//             itemCount: _banner(),
+//             itemBuilder: (BuildContext context, int index) {
+//               return Card(
+//                   shape: const RoundedRectangleBorder(
+//                       borderRadius: BorderRadius.all(Radius.circular(10))),
+//                   color: Colors.white,
+//                   elevation: 10,
+//                   margin: EdgeInsets.fromLTRB(16, 8, 16, 8),
+//                   child: Column(
+//                     children: <Widget>[
+//                       ClipRRect(
+// //                        borderRadius: BorderRadius.all(Radius.circular(15)),
+//                         borderRadius:
+//                             BorderRadius.vertical(top: Radius.circular(15)),
+//                         child: Image.network('https://www.wanandroid.com/blogimgs/50c115c2-cf6c-4802-aa7b-a4334de444cd.png'),
+//                       ),
+//                       Divider(height: 1, color: Colors.brown),
+//                       Text(
+//                         'hello flutter Listview',
+//                         style: TextStyle(height: 1, fontSize: 33),
+//                         textAlign: TextAlign.center,
+//                       )
+//                     ],
+//                   ));
+//             }));
+//   }
+// }
 
 class Choice {
   Choice({this.icon, this.title});
