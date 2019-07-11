@@ -1,7 +1,7 @@
+import 'package:demo1/model/banner_model_list.dart';
 import 'package:flutter/material.dart';
-import '../service/BannerSevice.dart' as BannerSevice;
+import '../service/banner_sevice.dart' as BannerSevice;
 import '../model/HomeBannerItemModel.dart';
-
 class HomeListView extends StatefulWidget {
   @override
   _HomeListViewState createState() => _HomeListViewState();
@@ -11,7 +11,7 @@ class _HomeListViewState extends State<HomeListView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: BannerSevice.decodeBanner(),
+        future: BannerSevice.decodeBanner1(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
@@ -27,7 +27,7 @@ class _HomeListViewState extends State<HomeListView> {
   }
 
   Widget createContainer(BuildContext context, AsyncSnapshot snapshot) {
-    List<HomeBannerItemModel> values = snapshot.data;
+    List<BannerModelList> values = snapshot.data;
     return Container(
         color: Colors.grey,
         child: ListView.builder(
