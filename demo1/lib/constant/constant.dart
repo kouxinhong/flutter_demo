@@ -1,4 +1,5 @@
-// import 'package:flutter/material.dart';
-// class Text{
-//   static 
-// }
+
+class Url{
+   static final home_banner = 'https://www.wanandroid.com/banner/json';
+
+}

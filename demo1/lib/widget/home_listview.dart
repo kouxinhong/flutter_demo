@@ -1,7 +1,8 @@
 import 'package:demo1/model/banner_model_list.dart';
 import 'package:flutter/material.dart';
 import '../service/banner_sevice.dart' as BannerSevice;
-import '../model/HomeBannerItemModel.dart';
+import 'package:http/http.dart' as http;
+
 class HomeListView extends StatefulWidget {
   @override
   _HomeListViewState createState() => _HomeListViewState();
@@ -11,7 +12,8 @@ class _HomeListViewState extends State<HomeListView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: BannerSevice.decodeBanner1(),
+        future: BannerSevice.serverDecodeBanner(http.Client()),
+//        future: BannerSevice.localDecodeBanner(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
