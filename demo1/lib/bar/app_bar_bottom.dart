@@ -1,3 +1,5 @@
+import 'package:demo1/pages/drawer_page.dart';
+import 'package:demo1/pages/home_page.dart';
 import 'package:demo1/widget/home_listview.dart';
 import 'package:flutter/material.dart';
 import './app_bar.dart' as MyAppBar;
@@ -17,7 +19,7 @@ class AppbarBottom extends StatelessWidget {
   ];
 
   final List<Widget> _tabBarViews = <Widget>[
-    HomeListView(),
+    HomePage(),
     Center(child: Text('项目')),
     Center(child: Text('体系')),
     Center(child: Text('公众号')),
@@ -32,6 +34,7 @@ class AppbarBottom extends StatelessWidget {
       length: _tabs.length,
       child: Scaffold(
           backgroundColor: Colors.grey[100],
+          drawer: HeaderDrawer(),
           appBar: AppBar(
             title: const Text('Flutter'),
             actions: _actions,
