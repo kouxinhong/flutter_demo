@@ -1,4 +1,4 @@
-import 'base_banner.dart';
+import 'base_model.dart';
 import 'banner_model_list.dart';
 
 import 'package:json_annotation/json_annotation.dart';
@@ -6,7 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'banner_model.g.dart';
 
 @JsonSerializable()
-class BannerModel extends BaseBanner<List<BannerModelList>> {
+class BannerModel extends BaseModel<List<BannerModelList>> {
   BannerModel({List<BannerModelList> data, int errorCode, String errorMsg})
       : super(data, errorCode, errorMsg);
 
