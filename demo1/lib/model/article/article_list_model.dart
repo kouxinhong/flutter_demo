@@ -1,9 +1,9 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
-import 'article_item_model.dart';
+import 'package:demo1/model/article/article_item_model.dart';
 
-part 'article_list_model.g.dart';
+part 'package:demo1/model/article/article_list_model.g.dart';
 
 @JsonSerializable()
 class ArticleListModel  {

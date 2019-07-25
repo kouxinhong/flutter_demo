@@ -1,6 +1,6 @@
 
 import 'package:json_annotation/json_annotation.dart';
-part 'article_tag_model.g.dart';
+part 'package:demo1/model/article/article_tag_model.g.dart';
 @JsonSerializable()
 class ArticleTagModel {
   String name;
