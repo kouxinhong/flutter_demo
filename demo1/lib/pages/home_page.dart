@@ -1,7 +1,7 @@
 import 'package:demo1/model/article/article_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:html/parser.dart' as html;
 import '../service/banner_sevice.dart' as BannerSevice;
 
 class HomePage extends StatelessWidget {
@@ -55,9 +55,9 @@ class HomePage extends StatelessWidget {
               children: <Widget>[
                 ListTile(
 //                  leading: Text(values[index].tags != null? values[index].tags[0].name: 'rr'),
-                  leading: Text('rrrr'),
-                  title: Text(values[index].title),
-                  subtitle: Text(values[index].desc),
+                  leading: Icon(Icons.adb),
+                  title: Text(values[index].title,maxLines: 1,overflow: TextOverflow.ellipsis),
+                  subtitle: Text(values[index].desc,maxLines: 2,overflow: TextOverflow.ellipsis),
                   contentPadding: EdgeInsets.zero,
                   trailing: Icon(
                     Icons.favorite,
