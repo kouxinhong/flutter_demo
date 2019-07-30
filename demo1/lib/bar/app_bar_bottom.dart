@@ -47,7 +47,6 @@ class AppbarBottom extends StatelessWidget {
               indicatorWeight: 1,
             ),
           ),
-          // bottomNavigationBar: bottomBar.MyBottomNavigationBar(),
           body: TabBarView(
             children: _tabBarViews,
           )),

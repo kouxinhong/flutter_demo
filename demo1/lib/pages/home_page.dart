@@ -1,14 +1,15 @@
 import 'package:demo1/model/article/article_item_model.dart';
+import 'package:demo1/pages/web_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:html/parser.dart' as html;
+
 import '../service/banner_sevice.dart' as BannerSevice;
 
 class HomePage extends StatelessWidget {
 //  final List<ArticleItemModel> _list;
 //  HomePage(this._list,{Key key}): super(key: key);
 
-  Widget _tags(ArticleItemModel value) {
+  Widget _otherInfo(ArticleItemModel value) {
     return Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: _getListItem(value));
@@ -49,26 +50,39 @@ class HomePage extends StatelessWidget {
               height: 1.0, color: Colors.grey, indent: 16, endIndent: 16);
         },
         itemBuilder: (BuildContext context, int index) {
-          return Padding(
-            padding: const EdgeInsets.only(left: 16, top: 16, right: 16, bottom: 16),
-            child: Column(
-              children: <Widget>[
-                ListTile(
-//                  leading: Text(values[index].tags != null? values[index].tags[0].name: 'rr'),
-                  leading: Icon(Icons.adb),
-                  title: Text(values[index].title,maxLines: 1,overflow: TextOverflow.ellipsis),
-                  subtitle: Text(values[index].desc,maxLines: 2,overflow: TextOverflow.ellipsis),
-                  contentPadding: EdgeInsets.zero,
-                  trailing: Icon(
-                    Icons.favorite,
-                    color: Colors.red,
-                  ),
-                ),
-                _tags(values[index]),
-              ],
+          return GestureDetector(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  left: 16, top: 16, right: 16, bottom: 16),
+              child: Column(
+                children: <Widget>[
+                  _listTile(values[index]),
+                  _otherInfo(values[index]),
+                ],
+              ),
             ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => WebViewPage(url: values[index].link,title: values[index].title)),
+              );
+            },
           );
         });
+  }
+
+  ListTile _listTile(ArticleItemModel value){
+    return ListTile(
+      leading: (null != value.tags &&
+          value.tags.isNotEmpty) ? Text(value.tags[0].name) : Icon(Icons.adb),
+      title: Text(value.title, maxLines: 1, overflow: TextOverflow.ellipsis),
+      subtitle: Text(value.desc, maxLines: 2, overflow: TextOverflow.ellipsis),
+      contentPadding: EdgeInsets.zero,
+      trailing: Icon(
+        Icons.favorite,
+        color: Colors.red,
+      ),
+    );
   }
 
   List<Widget> _getListItem(ArticleItemModel value) {
@@ -78,7 +92,7 @@ class HomePage extends StatelessWidget {
     items.add(_getPadding('分类:', 0x99));
     items.add(_getPadding(value.superChapterName, 0x00));
     items.add(_getPadding('时间:', 0x99));
-    items.add(_getPadding('时间:', 0x99));
+    items.add(_getPadding(value.niceDate, 0x00));
     return items;
   }
 

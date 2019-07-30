@@ -1,6 +1,7 @@
 
 class Url{
-   static const HOME_BANNER = 'https://www.wanandroid.com/banner/json';
-   static const HOME_ARTICLE = 'https://www.wanandroid.com/article/list/0/json';
+   static const BASE_URL = 'https://www.wanandroid.com/';
+   static const HOME_BANNER = BASE_URL+'banner/json';
+   static const HOME_ARTICLE = BASE_URL+'article/list/0/json';
 
 }
